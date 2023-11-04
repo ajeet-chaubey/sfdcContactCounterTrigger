@@ -1,0 +1,26 @@
+public class CountContactsOnAccountController{
+    // Method to update the count of contacts on an account
+    public static void updateContactCount(List<Contact>Contacts){
+        
+        //Storing Set of AccountIds to be updated
+        
+        Set<Id> accountIds = new Set<Id>();
+        
+        for(Contact cntcs: contacts){
+            
+            if(cntcs.AccountId != null){
+                accountIds.add(cntcs.AccountId);
+            }
+            
+        }
+               
+        List<Account> accList = [Select Number_of_Contacts__c, (select id from contacts) from Account where id in: accountIds];
+        List<Account> accUpdate = new List<Account>();
+        
+        for(Account acc: accList){ 
+            acc.Number_of_Contacts__c = acc.contacts.size();
+            accUpdate.add(acc);
+        }
+        update accUpdate;					
+    }
+}

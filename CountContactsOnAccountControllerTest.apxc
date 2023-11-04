@@ -1,0 +1,39 @@
+@isTest
+public class CountContactsOnAccountControllerTest {
+    
+    public static testMethod void contactCounter(){
+        
+        Account a1 = new Account(Name = 'Jack Dorcy');
+        insert a1;
+        Account a2 = new Account(Name = 'Elon Musk');
+        insert a2;
+        
+        Contact c1 = new Contact (LastName = 'Yellow');
+        c1.AccountId = a1.Id;
+        insert c1;
+        
+        Contact c2 = new Contact (LastName = 'Red');
+        c2.AccountId = a1.Id;
+        insert c2;
+        
+        Contact c3 = new Contact (LastName = 'Red');
+        c3.AccountId = a2.Id;
+        
+        Contact c4 = new Contact (LastName = 'Red');
+        c4.AccountId = a1.Id;
+        insert c4;
+        
+        Test.startTest();
+        
+        //insert c3;
+        //delete c4;
+        //c2.AccountId = a2.Id;
+        //insert c2;
+        //undelete c4;
+        
+        Test.stopTest();
+        
+        
+    }
+
+}
